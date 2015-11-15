@@ -163,9 +163,9 @@ static void appTaskCOUNT2(void *pdata) {
 	uint8_t status;
 	
   while (true) {
+		OSSemPend(computeSem, 0, &status);
 		OSSemPend(lcdSem, 0, &status);
     display(2, count2);
-		OSSemPend(computeSem, 0, &status);
     count2 += 1;
     total += 1;
 		status = OSSemPost(computeSem);		
